@@ -21,7 +21,7 @@ def home():
         host_app = socket.gethostname()
 
     return render_template(
-        "home.html",
+        "index.html",
         nome=nome,
         instituicao=instituicao,
         disciplina=disciplina,
