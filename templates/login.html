@@ -7,10 +7,10 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center gap-2">
             <a href="/" class="navbar-brand text-white">Avaliação contínua: <b>Aula 050.B</b></a>
-            <a href="/" class="btn btn-outline-light ms-2">Home</a>
-            <a href="/login" class="btn btn-outline-light ms-2">Login</a>
+            <a href="/" class="btn btn-outline-light">Home</a>
+            <a href="/login" class="btn btn-outline-light">Login</a>
         </div>
     </nav>
 
@@ -28,11 +28,12 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
-            <hr>
-            <p class="text-muted">
-                The local date and time is {{ now }}.<br>
-                That was a few seconds ago.
-            </p>
+        </div>
+
+        <!-- Data e hora FORA da caixa -->
+        <div class="mt-3 text-muted">
+            <p>The local date and time is {{ now }}.<br>
+            That was a few seconds ago.</p>
         </div>
     </div>
 </body>
