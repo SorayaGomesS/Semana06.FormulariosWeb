@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -26,10 +27,15 @@ def home():
 def login():
     if request.method == "POST":
         usuario = request.form.get("usuario")
-        senha = request.form.get("senha")
-        return f"Usuário {usuario} tentou logar!"
-
+        return redirect(url_for("acesso", usuario=usuario))
     return render_template("login.html")
+
+
+@app.route("/acesso")
+def acesso():
+    usuario = request.args.get("usuario", "desconhecido")
+    now = datetime.now().strftime("%B %d, %Y %I:%M %p")
+    return render_template("acesso.html", usuario=usuario, now=now)
 
 
 if __name__ == "__main__":
