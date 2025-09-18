@@ -1,52 +1,50 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import socket
 
 app = Flask(__name__)
 
-# ---------------- Home ----------------
+# Variáveis para armazenar dados da Home
+dados_usuario = {
+    "nome": "Estranho",
+    "sobrenome": "",
+    "instituicao": "None",
+    "disciplina": "",
+    "ip": "None",
+    "host": "None"
+}
+
 @app.route("/", methods=["GET", "POST"])
 def home():
-    nome = "Estranho"
-    instituicao = None
-    disciplina = None
-    ip_remoto = None
-    host_app = None
+    global dados_usuario
 
     if request.method == "POST":
-        nome = request.form.get("nome", "Estranho")
-        instituicao = request.form.get("instituicao")
-        disciplina = request.form.get("disciplina")
-        ip_remoto = request.remote_addr
-        host_app = socket.gethostname()
+        dados_usuario["nome"] = request.form.get("nome") or "Estranho"
+        dados_usuario["sobrenome"] = request.form.get("sobrenome") or ""
+        dados_usuario["instituicao"] = request.form.get("instituicao") or "None"
+        dados_usuario["disciplina"] = request.form.get("disciplina") or ""
+        dados_usuario["ip"] = request.remote_addr or "None"
+        dados_usuario["host"] = socket.gethostname() or "None"
 
-    return render_template(
-        "index.html",
-        nome=nome,
-        instituicao=instituicao,
-        disciplina=disciplina,
-        ip_remoto=ip_remoto,
-        host_app=host_app,
-    )
+    return render_template("index.html", dados=dados_usuario)
 
-# ---------------- Login ----------------
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    usuario = None
-    data_hora_atual = None
-    data_hora_passada = None
-
     if request.method == "POST":
         usuario = request.form.get("usuario")
-        data_hora_atual = datetime.now().strftime("%B %d, %Y %I:%M %p")
-        data_hora_passada = datetime.now().strftime("%B %d, %Y %I:%M:%S %p")
+        return redirect(url_for("acesso", usuario=usuario))
 
-    return render_template(
-        "login.html",
-        usuario=usuario,
-        data_hora_atual=data_hora_atual,
-        data_hora_passada=data_hora_passada,
-    )
+    now = datetime.now().strftime("%B %d, %Y %I:%M %p")
+    return render_template("login.html", now=now)
+
+
+@app.route("/acesso")
+def acesso():
+    usuario = request.args.get("usuario", "desconhecido")
+    now = datetime.now().strftime("%B %d, %Y %I:%M %p")
+    return render_template("acesso.html", usuario=usuario, now=now)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
