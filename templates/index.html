@@ -7,15 +7,15 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center gap-2">
             <a href="/" class="navbar-brand text-white">Avaliação contínua: <b>Aula 050.B</b></a>
-            <a href="/" class="btn btn-outline-light ms-2">Home</a>
-            <a href="/login" class="btn btn-outline-light ms-2">Login</a>
+            <a href="/" class="btn btn-outline-light">Home</a>
+            <a href="/login" class="btn btn-outline-light">Login</a>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h2>Olá, {{ dados.nome }}!</h2>
+        <h2>Olá, {{ dados.nome }} {{ dados.sobrenome }}!</h2>
         <p>A sua Instituição de ensino é {{ dados.instituicao }}</p>
         <p>Está cursando a disciplina de {{ dados.disciplina }}</p>
         <p>O IP do computador remoto é: {{ dados.ip }}</p>
@@ -53,4 +53,5 @@
     </div>
 </body>
 </html>
+
 
