@@ -7,21 +7,19 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="navbar-text text-white">
-                Avaliação contínua: <b>Aula 050.B</b>
-            </span>
-            <div>
-                <a href="/" class="btn btn-outline-light">Home</a>
-                <a href="/login" class="btn btn-outline-light">Login</a>
-            </div>
+        <div class="container-fluid d-flex align-items-center">
+            <a href="/" class="navbar-brand text-white">Avaliação contínua: <b>Aula 050.B</b></a>
+            <a href="/" class="btn btn-outline-light ms-2">Home</a>
+            <a href="/login" class="btn btn-outline-light ms-2">Login</a>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h2>Olá, {{ dados.nome if dados.nome else "Estranho" }}!</h2>
-        <p>A sua Instituição de ensino é {{ dados.instituicao if dados.instituicao else "None" }}</p>
-        <p>Está cursando a disciplina de {{ dados.disciplina if dados.disciplina else "" }}</p>
+        <h2>Olá, {{ dados.nome }}!</h2>
+        <p>A sua Instituição de ensino é {{ dados.instituicao }}</p>
+        <p>Está cursando a disciplina de {{ dados.disciplina }}</p>
+        <p>O IP do computador remoto é: {{ dados.ip }}</p>
+        <p>O host da aplicação é: {{ dados.host }}</p>
 
         <hr>
 
@@ -43,7 +41,11 @@
 
             <div class="mb-3">
                 <label>Informe a sua disciplina</label>
-                <input type="text" name="disciplina" class="form-control" value="DSWA5">
+                <select name="disciplina" class="form-select">
+                    <option value="DSWA5">DSWA5</option>
+                    <option value="DWBA4">DWBA4</option>
+                    <option value="Gestão de Projetos">Gestão de Projetos</option>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
