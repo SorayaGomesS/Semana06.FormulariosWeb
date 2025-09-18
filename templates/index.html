@@ -2,54 +2,20 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Avaliação contínua: Aula 050.B</title>
+    <title>Avaliação Contínua</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid d-flex align-items-center">
-            <a href="/" class="navbar-brand text-white">Avaliação contínua: <b>Aula 050.B</b></a>
-            <a href="/" class="btn btn-outline-light ms-2">Home</a>
-            <a href="/login" class="btn btn-outline-light ms-2">Login</a>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+        <a class="navbar-brand me-3" href="{{ url_for('home') }}">Avaliação contínua: Aula 050.B</a>
+        <div class="d-flex">
+            <a class="btn btn-outline-light me-2" href="{{ url_for('home') }}">Home</a>
+            <a class="btn btn-outline-light" href="{{ url_for('login') }}">Login</a>
         </div>
     </nav>
-
-    <div class="container mt-5">
-        <h2>Olá, {{ dados.nome }}!</h2>
-        <p>A sua Instituição de ensino é {{ dados.instituicao }}</p>
-        <p>Está cursando a disciplina de {{ dados.disciplina }}</p>
-        <p>O IP do computador remoto é: {{ dados.ip }}</p>
-        <p>O host da aplicação é: {{ dados.host }}</p>
-
-        <hr>
-
-        <form method="POST">
-            <div class="mb-3">
-                <label>Informe o seu nome</label>
-                <input type="text" name="nome" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label>Informe o seu sobrenome</label>
-                <input type="text" name="sobrenome" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label>Informe a sua Instituição de ensino</label>
-                <input type="text" name="instituicao" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label>Informe a sua disciplina</label>
-                <select name="disciplina" class="form-select">
-                    <option value="DSWA5">DSWA5</option>
-                    <option value="DWBA4">DWBA4</option>
-                    <option value="Gestão de Projetos">Gestão de Projetos</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
     </div>
 </body>
 </html>
+
