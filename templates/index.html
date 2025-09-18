@@ -13,8 +13,33 @@
             <a class="btn btn-outline-light" href="{{ url_for('login') }}">Login</a>
         </div>
     </nav>
+
     <div class="container mt-4">
-        {% block content %}{% endblock %}
+        <h2>Olá, {{ nome }}!</h2>
+        <p>A sua Instituição de ensino é {{ instituicao }}</p>
+        <p>Está cursando a disciplina de {{ disciplina }}</p>
+        <p>O IP do computador remoto é: {{ ip_remoto }}</p>
+        <p>O host da aplicação é: {{ host_app }}</p>
+
+        <form method="POST" class="mt-4">
+            <div class="mb-3">
+                <label class="form-label">Informe o seu nome:</label>
+                <input type="text" class="form-control" name="nome" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Informe a sua Instituição:</label>
+                <input type="text" class="form-control" name="instituicao" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Informe a sua disciplina:</label>
+                <select class="form-select" name="disciplina" required>
+                    <option value="DSWA5">DSWA5</option>
+                    <option value="DWBA4">DWBA4</option>
+                    <option value="Gestão de Projetos">Gestão de Projetos</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
     </div>
 </body>
 </html>
